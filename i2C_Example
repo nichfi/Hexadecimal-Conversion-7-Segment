@@ -1,1 +1,34 @@
+// Include Arduino Wire library for I2C
+#include <Wire.h>
+ 
+// Define Lumineq Address which is 36 in decimal or 20 in hexadecimal
+//#define SLAVE_ADDR 32 //
+#define SLAVE_ADDR 0x20
+void setup() {
+ 
+// Initialize I2C communications as Master, we might need a communication speed here where all sensors can work with (115200)
+Wire.begin();
+ 
+// Setup serial monitor
+Serial.begin(9600);
+Serial.println("I2C Master Demonstration");
+}
+
+
+void loop() {
+//delay(50);
+//Serial.println("Write data to slave");
+//// Write all segments on to Lumineq
+//Wire.beginTransmission(SLAVE_ADDR);
+//Wire.write(0x1A, 0x03, 0x19);  all seg on
+//Wire.write(0x02, 0x06, 0x02, 0x09, 0x00, 0x0F);  set brightness
+//Wire.endTransmission();
+// 
+// Write all segments off to Lumineq after 2 seconds
+delay(2000);
+Wire.beginTransmission(SLAVE_ADDR);
+
+static byte msg1[] = {0x02, 0x06, 0x02, 0x01, 0x00, 0x07};
+static byte msg2[] = {0x1A, 0x03, 0x19};
+//static byte msg4[] = {0x01, 0x13, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF , checksum};
 
